@@ -34,8 +34,8 @@ resource "aws_ecr_repository" "default" {
   dynamic "encryption_configuration" {
     for_each = var.encryption_configuration != null ? [var.encryption_configuration] : []
     content {
-      encryption_type = lookup(encryption_configuration.value.encryption_type, null)
-      kms_key         = lookup(encryption_configuration.value.kms_key, null)
+      encryption_type = lookup(encryption_configuration.value["encryption_type"], null)
+      kms_key         = lookup(encryption_configuration.value["kms_key"], null)
     }
   }
   image_scanning_configuration {
